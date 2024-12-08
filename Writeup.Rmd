@@ -1,0 +1,72 @@
+---
+title: "Write-up"
+output:
+  word_document: default
+  pdf_document: default
+date: "2024-12-06"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+```{r}
+setwd("/Users/Lenovo/Documents/GitHub/DAP2-final-project-andiyoga34") #set working directory as place for knitting output in PDF
+```
+
+
+**THE TRAJECTORY OF COUNTRIES’ ECONOMY AND FISCAL DURING & POST PANDEMIC COVID-19**
+
+
+**Research Questions**
+
+1. How are the economy and fiscal of developed and developing countries impacted by pandemic Covid-19 and how fast they recover?
+
+2. Which one is more influential on countries’ debt performance: economy or revenue performance?
+
+
+My approach for the first research question is by using descriptive analysis and text analysis.
+For descriptive analysis, the inputs are four datasets I gathered from World Bank Database (i.e. GDP, GDP Per Capita, Debt, and Revenue) that I later merged to show the trajectory of countries' economy and
+fiscal (indicated by debt and revenue) during and post-Covid19. To distinguish developed and developing countries in this analysis I use GPD Per Capita data and threshold used by the World Bank to categorize High Income Countries: 12,000 USD. To see quickly how the economy of countries immediately impact by the pandemic in 2020, I also created choropleth of World Heat Map displaying annual GDP growth of each country sourced from IMF data.
+
+
+For the text analysis, I used World Bank’s Global Economic Prospect Report (January 2023) that covered how the countries started recover from the pandemic in 2022 and its trajectory going forward.
+
+
+For the second research question, my approach is using regression models based on one merged dataset I built that I already mentioned above.
+First regression is Debt on GDP to see the relationship between the two, and my second regression is Debt on Revenue. Both regression models deploy three variables of control i.e. GDP Per Capita (to control for countries stage of development), countries fixed effect (to control for countries different characteristic outside stage of development e.g. institutional quality and geographic location), and time fixed effect (accounting for common shocks i.e. pandemic year affecting all countries at time 𝑡).
+
+
+**What the all R files do with the coding**
+
+1. data.R : doing all data wrangling to create one dataset as a base for my descriptive analysis and regression models. I filtered the data to display range of years from 2015-2023 to see the trajectory before (but not too far in the past), during, and post covid-19.
+
+2. models.R: creating regression models and run them.
+
+3. textprocess.R: loading the pre-downloaded WB's GEP January 2023 Report and parsed it to text and tokenize then to be processed further including using AFINN lexicon
+
+4. staticplots.R : making all the static plots in my shiny dashboard. The second tab (World Data -including Developing and Developed countries- displaying the trajectory of countries' GDP, debt, and revenue), third tab (choropleth of World Heat map of annual GDP growth in 2020), fourth tab (regressions plots), and fifth tab (text analyses plots) in my shinyapp dashboard: 
+
+
+5. shinyapp.R: running the code of shinyapp to display my dashboard displaying interactive graphs of individual country's debt, revenue, and GDP in the first tabs and all static plots mentioned above created by staticplots.R
+
+
+
+**The weaknesses and difficulties of the project**
+
+1. There are so many NAs in the debt data from the World Bank database. I don't know why that's the case, but when I tried to compare it with IMF data, the number of NAs are pretty much the same. 
+The existence of so many NAs here might affect the results of the regressions.
+
+2. The debt and revenue data are lagging (the latest data for both is in 2022; the latest GDP data is 2023)
+
+3. Difficulty in merging all countries successfully from the IMF data to the World Data (rnaturalearth library) due to differences of wording and spelling for certain countries.
+
+
+
+**Discussion of the Results and Next Steps**
+
+1. Developed countries cope way better than the developing countries during the pandemic and recover much better post-pandemic.
+
+2. In this analysis, both revenue and GDP movement seem to have weak, positive correlations with debt performance and are statistically insignificant in affecting the debt trajectory. However, in addition to the common caveat of “correlation is not causation”, the limitation of the data (so many NAs in the debt data) should make us take a careful conclusion on this result. 
+
+3. In the next research/analysis, it might be useful to see the projection of the debt, GDP, and revenue in some years in the future using some forecasting filters learned in class (e.g. HP filter).
+

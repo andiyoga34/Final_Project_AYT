@@ -1,0 +1,223 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={Write-up},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{Write-up}
+\author{}
+\date{\vspace{-2.5em}2024-12-06}
+
+\begin{document}
+\maketitle
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{setwd}\NormalTok{(}\StringTok{"/Users/Lenovo/Documents/GitHub/DAP2{-}final{-}project{-}andiyoga34"}\NormalTok{) }\CommentTok{\#set working directory as place for knitting output in PDF}
+\end{Highlighting}
+\end{Shaded}
+
+The Trajectory of Countries' Economy and Fiscal During \& Post Pandemic
+Covid-19
+
+Research Question
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  How are the economy and fiscal of developed and developing countries
+  impacted by pandemic Covid-19 and how fast they recover?
+\item
+  Which one is more influential on countries' debt performance: economy
+  or revenue performance?
+\end{enumerate}
+
+My approach for the first research question is by using descriptive
+analysis and text analysis. For descriptive analysis, the inputs are
+four datasets I gathered from World Bank Database (i.e.~GDP, GDP Per
+Capita, Debt, and Revenue) that I later merged to show the trajectory of
+countries' economy and fiscal (indicated by debt and revenue) during and
+post-Covid19. To distinguish developed and developing countries in this
+analysis I use GPD Per Capita data and threshold used by the World Bank
+to categorize High Income Countries: 12,000 USD. To see quickly how the
+economy of countries immediately impact by the pandemic in 2020, I also
+created choropleth of World Heat Map displaying annual GDP growth of
+each country sourced from IMF data.
+
+For the text analysis, I used World Bank's Global Economic Prospect
+Report (January 2023) that covered how the countries started recover
+from the pandemic in 2022 and its trajectory going forward.
+
+For the second research question, my approach is using regression
+models. First regression is Debt on GDP to see the relationship between
+the two, and my second regression is Debt on Revenue. Both regression
+models deploy three variables of control i.e.~GDP Per Capita (to control
+for countries stage of development), countries fixed effect (to control
+for countries different characteristic outside stage of development
+e.g.~institutional quality and geographic location), and time fixed
+effect (accounting for common shocks i.e.~pandemic year affecting all
+countries at time 𝑡).
+
+What the all R files do with the coding: 1. data.R : doing all data
+wrangling to create one dataset as a base for my descriptive analysis
+and regression models
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\item
+  models.R: creating regression models and run them.
+\item
+  textprocess.R: loading the pre-downloaded WB's GEP January 2023 Report
+  and parsed it to text and tokenize then to be processed further
+  including using AFINN lexicon
+\item
+  staticplots.R : making all the static plots in the second tab (World
+  Data including Developing and Developed countries), third tab
+  (choropleth of World Heat map of annual GDP growth in 2020), fourth
+  tab (regressions plots), and fifth tab (text analyses plots) in my
+  shinyapp dashboard:
+\item
+  shinyapp.R: running the code of shinyapp to display my dashboard
+  displaying interactive graphs of individual country's debt, revenue,
+  and GDP in the first tabs and all static plots mentioned above created
+  by staticplots.R
+\end{enumerate}
+
+The weaknesses and difficulties of the project:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  There are so many NAs in the debt data from the World Bank database. I
+  don't know why that's the case, but when I tried to compare it with
+  IMF data, the number of NAs are pretty much the same. The existence of
+  so many NAs here might affect the results of the regressions.
+\item
+  Difficulty in merging all countries successfully from the IMF data to
+  the World Data (rnaturalearth library) due to differences of wording
+  and spelling for certain countries.
+\end{enumerate}
+
+Discussion of the Results and Next Steps:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Developed countries cope way better than the developing countries
+  during the pandemic and recover much better post-pandemic.
+\item
+  In this analysis, both revenue and GDP movement seem to have weak,
+  positive correlations with debt performance and are statistically
+  insignificant in affecting the debt trajectory. However, in addition
+  to the common caveat of ``correlation is not causation'', the
+  limitation of the data (so many NAs in the debt data) should make us
+  take a careful conclusion on this result.
+\item
+  In the next research/analysis, it might be useful to see the
+  projection of the debt, GDP, and revenue in some years in the future
+  using some forecasting filters learned in class (e.g.~HP filter).
+\end{enumerate}
+
+\end{document}

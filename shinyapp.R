@@ -22,13 +22,13 @@ ui <- dashboardPage(
       tabItem(tabName = "country_data",
               fluidRow(
                 box(title = "Select Country for Revenue & Debt Plot", width = 4, solidHeader = TRUE, status = "primary",
-                    selectInput("country_revenue_debt", "Select Country:", choices = unique(cleaned_data$Country_Name))),
+                    selectInput("country_revenue_debt", "Select Country:", choices = unique(merged_data$Country_Name))),
                 box(title = "Revenue and Debt Plot", width = 8, solidHeader = TRUE, status = "primary",
                     plotOutput("revenue_debt_plot"))
               ),
               fluidRow(
                 box(title = "Select Country for GDP Plot", width = 4, solidHeader = TRUE, status = "primary",
-                    selectInput("country_gdp", "Select Country:", choices = unique(cleaned_data$Country_Name))),
+                    selectInput("country_gdp", "Select Country:", choices = unique(merged_data$Country_Name))),
                 box(title = "GDP Plot", width = 8, solidHeader = TRUE, status = "primary",
                     plotOutput("gdp_plot"))
               )
@@ -74,7 +74,7 @@ server <- function(input, output) {
   # First Plot: Revenue and Debt for the selected country
   output$revenue_debt_plot <- renderPlot({
     req(input$country_revenue_debt)
-    country_data <- cleaned_data %>% filter(Country_Name == input$country_revenue_debt)
+    country_data <- merged_data %>% filter(Country_Name == input$country_revenue_debt)
     if (nrow(country_data) == 0) return(NULL)
     
     ggplot(country_data, aes(x = Year)) +
@@ -98,7 +98,7 @@ server <- function(input, output) {
   # Second Plot: GDP for the selected country
   output$gdp_plot <- renderPlot({
     req(input$country_gdp)
-    country_data <- cleaned_data %>% filter(Country_Name == input$country_gdp)
+    country_data <- merged_data %>% filter(Country_Name == input$country_gdp)
     if (nrow(country_data) == 0) return(NULL)
     
     ggplot(country_data, aes(x = Year, y = GDP)) +

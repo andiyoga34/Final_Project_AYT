@@ -1,13 +1,14 @@
-setwd("~/2025 Fall Quarter/R2/Final Project/")
+#setting your working directory (adjust to your own)
+setwd("/Users/Lenovo/Documents/GitHub/DAP2-final-project-andiyoga34/Inputs/Raw Files/")
 
 # Load required libraries
 
 library(tidyverse)
-library(ggplot2)
+
 
 
 # Downloading GDP Per Capita dataset from Wolrd Bank web into designated folder and the ZIP file name
-zip_file <- "/Users/Lenovo/Documents/2025 Fall Quarter/R2/Final Project/worldbank_gdp_per_capita.zip"
+zip_file <- "/Users/Lenovo/Documents/GitHub/DAP2-final-project-andiyoga34/Inputs/Raw Files/worldbank_gdp_per_capita.zip"
 
 # Check if the ZIP file already exists before downloading
 if (!file.exists(zip_file)) {
@@ -20,7 +21,7 @@ if (!file.exists(zip_file)) {
 }
 
 # Unzip the ZIP file
-unzip(zip_file, exdir = "/Users/Lenovo/Documents/2025 Fall Quarter/R2/Final Project/")
+unzip(zip_file, exdir = "/Users/Lenovo/Documents/GitHub/DAP2-final-project-andiyoga34/Inputs/Raw Files/")
 
 
 
@@ -40,10 +41,10 @@ load_and_reshape <- function(file_path, value_name, years = 2015:2023) {
 # Load and reshape datasets with renamed columns
 debt_long <- load_and_reshape("Debt.csv", "Debt", 2015:2022)
 gdp_long <- load_and_reshape("GDP.csv", "GDP", 2015:2023)
-gdp_per_capita_long <- load_and_reshape("API_NY.GDP.PCAP.CD_DS2_en_csv_v2_142.csv", "GDP_Per_Capita")
+gdp_per_capita_long <- load_and_reshape("API_NY.GDP.PCAP.CD_DS2_en_csv_v2_77536.csv", "GDP_Per_Capita") #adjust the automatically retrieved file name accordingly
 revenue_long <- load_and_reshape("Revenue.csv", "Revenue", 2015:2023)
 
-# Merge datasets after removing NAs
+# Merge datasets and removing NAs
 merged_data <- reduce(
   list(debt_long, gdp_long, gdp_per_capita_long, revenue_long),
   ~ left_join(.x, .y, by = c("Country_Name", "Country_Code", "Year"))
@@ -80,36 +81,6 @@ debt_summary <- summarize_metric(merged_data, "Debt", 2015, 2022)
 gdp_summary <- summarize_metric(merged_data, "GDP", 2015, 2023, sum)
 revenue_summary <- summarize_metric(merged_data, "Revenue", 2015, 2022)
 
-# Function to create line plots
-create_line_plot <- function(data, y_var, y_label, title, colors = c("red", "blue", "green", "black")) {
-  ggplot(data, aes(x = Year, y = !!sym(y_var), color = Category)) +
-    geom_line(size = 1) +
-    scale_color_manual(values = colors) +
-    labs(
-      title = title,
-      x = "Year",
-      y = y_label
-    ) +
-    theme(
-      axis.text.x = element_text(size = 14, angle = 0, hjust = 0.5),
-      axis.title.x = element_text(size = 16, face = "bold"),
-      axis.text.y = element_text(size = 14, angle = 0, hjust = 0.5),
-      axis.title.y = element_text(size = 16, face = "bold"),
-      legend.title = element_blank(),
-      legend.text = element_text(size = 14),
-      plot.title = element_text(size = 20, face = "bold", hjust = 0.5)
-    ) +
-    geom_vline(xintercept = 2020, linetype = "dashed", color = "black", size = 1.0)
-}
 
-# Generate plots
-world_gdp_plot <- create_line_plot(gdp_summary, "GDP", "GDP (current US$, in Billion)", "GDP Data by Country Groups (2015-2023)")
-world_debt_plot <- create_line_plot(debt_summary, "Debt", "Debt (% of GDP)", "Debt Data by Country Groups (2015-2022)")
-world_revenue_plot <- create_line_plot(revenue_summary, "Revenue", "Revenue (% of GDP)", "Revenue Data by Country Groups (2015-2022)")
-
-# Print plots
-print(world_gdp_plot)
-print(world_debt_plot)
-print(world_revenue_plot)
 
 
