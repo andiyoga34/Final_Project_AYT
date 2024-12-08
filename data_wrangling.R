@@ -1,5 +1,5 @@
 #setting your working directory (adjust to your own)
-setwd("/Users/Lenovo/Documents/GitHub/DAP2-final-project-andiyoga34/Inputs/Raw Files/")
+setwd("/Users/Lenovo/Documents/GitHub/DAP2-final-project-andiyoga34/Data/Raw Files/")
 
 # Load required libraries
 
@@ -8,7 +8,7 @@ library(tidyverse)
 
 
 # Downloading GDP Per Capita dataset from Wolrd Bank web into designated folder and the ZIP file name
-zip_file <- "/Users/Lenovo/Documents/GitHub/DAP2-final-project-andiyoga34/Inputs/Raw Files/worldbank_gdp_per_capita.zip"
+zip_file <- "/Users/Lenovo/Documents/GitHub/DAP2-final-project-andiyoga34/Data/Raw Files/worldbank_gdp_per_capita.zip"
 
 # Check if the ZIP file already exists before downloading
 if (!file.exists(zip_file)) {
@@ -21,7 +21,7 @@ if (!file.exists(zip_file)) {
 }
 
 # Unzip the ZIP file
-unzip(zip_file, exdir = "/Users/Lenovo/Documents/GitHub/DAP2-final-project-andiyoga34/Inputs/Raw Files/")
+unzip(zip_file, exdir = "/Users/Lenovo/Documents/GitHub/DAP2-final-project-andiyoga34/Data/Raw Files/")
 
 
 
@@ -82,5 +82,6 @@ gdp_summary <- summarize_metric(merged_data, "GDP", 2015, 2023, sum)
 revenue_summary <- summarize_metric(merged_data, "Revenue", 2015, 2022)
 
 
-
+#exporting the merged_data as csv file to the designated folder
+write.csv(merged_data,  file = "/Users/Lenovo/Documents/GitHub/DAP2-final-project-andiyoga34/Data/Final, clean data/merged_data.csv", row.names = FALSE)
 

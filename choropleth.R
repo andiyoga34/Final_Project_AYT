@@ -4,7 +4,7 @@ library(sf)
 library(rnaturalearth)
 
 
-imf_data <- read_excel("/Users/Lenovo/Documents/GitHub/DAP2-final-project-andiyoga34/Inputs/Raw Files/Annual Growth_IMF.xls")
+imf_data <- read_excel("/Users/Lenovo/Documents/GitHub/DAP2-final-project-andiyoga34/Data/Raw Files/Annual Growth_IMF.xls")
 
 imf_data <- imf_data %>%
   rename(Country = 1)  # Renaming the first column to 'Country'

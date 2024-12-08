@@ -10,7 +10,7 @@ library(tidyverse)
 # it really takes time (probably one to two minutes or more) to process to parsed_text
 
 
-pdf_file <- "/Users/Lenovo/Documents/GitHub/DAP2-final-project-andiyoga34/Inputs/Raw Files/GEP-January-2023.pdf"
+pdf_file <- "/Users/Lenovo/Documents/GitHub/DAP2-final-project-andiyoga34/Data/Raw Files/GEP-January-2023.pdf"
 
 wb_report <- pdf_text(pdf_file)
 

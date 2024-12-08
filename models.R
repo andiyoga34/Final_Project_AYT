@@ -55,3 +55,5 @@ regression_text_2 <- paste("Revenue Coef: ", round(coef_value_2, 4),
 
 
 
+#exporting the cleaned_data as csv file to the designated folder
+write.csv(cleaned_data,  file = "/Users/Lenovo/Documents/GitHub/DAP2-final-project-andiyoga34/Data/Final, clean data/cleaned_data.csv", row.names = FALSE)
